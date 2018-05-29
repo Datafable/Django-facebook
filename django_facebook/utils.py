@@ -332,8 +332,8 @@ def mass_get_or_create(model_class, base_queryset, id_field, default_dict,
     '''
     current_instances = list(base_queryset)
     current_ids = set(
-        [unicode(getattr(c, id_field)) for c in current_instances])
-    given_ids = map(unicode, default_dict.keys())
+        [str(getattr(c, id_field)) for c in current_instances])
+    given_ids = map(str, default_dict.keys())
     # both ends of the comparison are in unicode ensuring the not in works
     new_ids = [g for g in given_ids if g not in current_ids]
     prepared_models = []
